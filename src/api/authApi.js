@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const authApi = axios.create({
-  baseURL: import.meta.env.VITE_AUTH_URL,
+  baseURL: import.meta.env.VITE_AUTH_API_URL,
 });
 
 export async function login(credentials) {
