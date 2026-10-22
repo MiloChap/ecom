@@ -154,3 +154,7 @@ code {
     padding-inline: 20px;
   }
 }
+
+.error-message {
+  color: #e5484d;
+}

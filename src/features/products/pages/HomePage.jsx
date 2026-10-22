@@ -1,13 +1,20 @@
-import { useEffect } from "react";
-import { getProducts, getCategories } from "../../../api/fakestoreApi";
+import { useProducts } from "../context/ProductsContext";
+import ProductList from "../components/ProductList";
+import Loader from "../../../components/Loader";
+import ErrorMessage from "../../../components/ErrorMessage";
 
 function HomePage() {
-  useEffect(() => {
-    getProducts().then((products) => console.log("produits", products));
-    getCategories().then((categories) => console.log("categories", categories));
-  }, []);
+  const { products, loading, error } = useProducts();
 
-  return <h1>Tous les produits</h1>;
+  if (loading) return <Loader />;
+  if (error) return <ErrorMessage message={error} />;
+
+  return (
+    <section>
+      <h1>Tous les produits</h1>
+      <ProductList products={products} />
+    </section>
+  );
 }
 
 export default HomePage;
