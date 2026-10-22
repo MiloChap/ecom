@@ -1,8 +1,11 @@
 import Card from "../../../components/ui/Card";
 import Button from "../../../components/ui/Button";
 import { formatPrice } from "../../../utils/formatPrice";
+import { useCart } from "../../cart/context/CartContext";
 
 function ProductCard({ product, onShowDetails }) {
+  const { dispatch } = useCart();
+
   return (
     <Card>
       <img
@@ -16,7 +19,12 @@ function ProductCard({ product, onShowDetails }) {
         <Button type="button" onClick={onShowDetails}>
           Détails
         </Button>
-        <Button type="button">Ajouter au panier</Button>
+        <Button
+          type="button"
+          onClick={() => dispatch({ type: "ADD", product })}
+        >
+          Ajouter au panier
+        </Button>
       </div>
     </Card>
   );

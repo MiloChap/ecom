@@ -1,8 +1,11 @@
 import { Link, NavLink } from "react-router";
 import { useProducts } from "../features/products/context/ProductsContext";
+import { useCart } from "../features/cart/context/CartContext";
+import Badge from "./ui/Badge";
 
 function Header() {
   const { categories } = useProducts();
+  const { count } = useCart();
 
   return (
     <header className="header">
@@ -11,7 +14,10 @@ function Header() {
           Ecom
         </Link>
         <nav className="header-nav">
-          <NavLink to="/cart">Panier</NavLink>
+          <NavLink to="/cart">
+            🛒 Panier
+            {count > 0 && <Badge>{count}</Badge>}
+          </NavLink>
           <NavLink to="/login">Connexion</NavLink>
         </nav>
       </div>
