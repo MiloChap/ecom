@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { login, register, getMe } from "../../../api/authApi";
+import Loader from "../../../components/Loader";
 
 const AuthContext = createContext(null);
 
@@ -48,7 +49,11 @@ function AuthProvider({ children }) {
 
   const value = { user, loading, loginUser, registerUser, logoutUser };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {loading ? <Loader /> : children}
+    </AuthContext.Provider>
+  );
 }
 
 export default AuthProvider;

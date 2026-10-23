@@ -63,3 +63,33 @@
   font-weight: 600;
   color: var(--text-h);
 }
+
+.checkout-page {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.checkout-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.checkout-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 24px 0 16px;
+}
