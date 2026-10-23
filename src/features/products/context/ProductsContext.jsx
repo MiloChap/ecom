@@ -1,5 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getProducts, getCategories } from "../../../api/fakestoreApi";
+import {
+  getProducts,
+  getCategories,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+} from "../../../api/fakestoreApi";
 
 const ProductsContext = createContext(null);
 
@@ -25,7 +31,35 @@ function ProductsProvider({ children }) {
     fetchData();
   }, []);
 
-  const value = { products, categories, loading, error };
+  const addProduct = async (product) => {
+    const newProduct = {
+      ...product,
+      id: Date.now(),
+      rating: { rate: 0, count: 0 },
+    };
+    await createProduct(newProduct);
+    setProducts([...products, newProduct]);
+  };
+
+  const editProduct = async (id, product) => {
+    await updateProduct(id, product);
+    setProducts(products.map((p) => (p.id === id ? { ...p, ...product } : p)));
+  };
+
+  const removeProduct = async (id) => {
+    await deleteProduct(id);
+    setProducts(products.filter((p) => p.id !== id));
+  };
+
+  const value = {
+    products,
+    categories,
+    loading,
+    error,
+    addProduct,
+    editProduct,
+    removeProduct,
+  };
 
   return (
     <ProductsContext.Provider value={value}>

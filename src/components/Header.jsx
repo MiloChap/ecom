@@ -8,7 +8,7 @@ import Button from "./ui/Button";
 function Header() {
   const { categories } = useProducts();
   const { count } = useCart();
-  const { user, logoutUser } = useAuth();
+  const { user, isAdmin, logoutUser } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -29,6 +29,7 @@ function Header() {
           </NavLink>
           {user ? (
             <>
+              {isAdmin && <NavLink to="/admin">Admin</NavLink>}
               <span>Bonjour {user.username}</span>
               <Button onClick={handleLogout}>Déconnexion</Button>
             </>

@@ -4,6 +4,8 @@ import Loader from "../../../components/Loader";
 
 const AuthContext = createContext(null);
 
+const adminEmails = import.meta.env.VITE_ADMIN_EMAILS_DEMO.split(",");
+
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -47,7 +49,8 @@ function AuthProvider({ children }) {
     setUser(null);
   };
 
-  const value = { user, loading, loginUser, registerUser, logoutUser };
+  const isAdmin = user !== null && adminEmails.includes(user.email);
+  const value = { user, isAdmin, loading, loginUser, registerUser, logoutUser };
 
   return (
     <AuthContext.Provider value={value}>
