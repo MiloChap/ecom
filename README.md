@@ -1,7 +1,6 @@
-# ECom : boutique en ligne en React
+# ECom : plateforme e-commerce
 
 Site e-commerce en React.
-Les produits viennent de l'API [Fake Store](https://fakestoreapi.com) et l'authentification passe par l'API [authdev.ri7.tech](https://authdev.ri7.tech).
 
 ## Lancer le projet
 
