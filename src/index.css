@@ -130,6 +130,7 @@ code {
 .header-nav {
   flex-wrap: wrap;
   display: flex;
+  align-items: center;
   gap: 16px;
 }
 

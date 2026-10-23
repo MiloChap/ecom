@@ -1,11 +1,20 @@
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { useProducts } from "../features/products/context/ProductsContext";
 import { useCart } from "../features/cart/context/CartContext";
+import { useAuth } from "../features/auth/context/AuthContext";
 import Badge from "./ui/Badge";
+import Button from "./ui/Button";
 
 function Header() {
   const { categories } = useProducts();
   const { count } = useCart();
+  const { user, logoutUser } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logoutUser();
+    navigate("/");
+  };
 
   return (
     <header className="header">
@@ -18,7 +27,17 @@ function Header() {
             🛒 Panier
             {count > 0 && <Badge>{count}</Badge>}
           </NavLink>
-          <NavLink to="/login">Connexion</NavLink>
+          {user ? (
+            <>
+              <span>Bonjour {user.username}</span>
+              <Button onClick={handleLogout}>Déconnexion</Button>
+            </>
+          ) : (
+            <>
+              <NavLink to="/login">Connexion</NavLink>
+              <NavLink to="/register">Inscription</NavLink>
+            </>
+          )}
         </nav>
       </div>
       <nav className="header-nav">
