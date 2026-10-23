@@ -16,9 +16,9 @@ import ProtectedRoute from "./features/auth/components/ProtectedRoute";
 
 function App() {
   return (
-    <AuthProvider>
-      <ProductsProvider>
-        <CartProvider>
+    <ProductsProvider>
+      <CartProvider>
+        <AuthProvider>
           <Routes>
             <Route element={<Layout />}>
               <Route index element={<HomePage />} />
@@ -34,9 +34,9 @@ function App() {
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
-        </CartProvider>
-      </ProductsProvider>
-    </AuthProvider>
+        </AuthProvider>
+      </CartProvider>
+    </ProductsProvider>
   );
 }
 

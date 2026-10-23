@@ -4,10 +4,12 @@ import ProductTable from "../components/ProductTable";
 import ProductForm from "../components/ProductForm";
 import Button from "../../../components/ui/Button";
 import ErrorMessage from "../../../components/ErrorMessage";
+import Loader from "../../../components/Loader";
 import "../admin.css";
 
 function AdminPage() {
-  const { products, addProduct, editProduct, removeProduct } = useProducts();
+  const { products, loading, addProduct, editProduct, removeProduct } =
+    useProducts();
   const [showForm, setShowForm] = useState(false);
   const [editedProduct, setEditedProduct] = useState(null);
   const [error, setError] = useState("");
@@ -42,6 +44,8 @@ function AdminPage() {
       setError(err.message);
     }
   };
+
+  if (loading) return <Loader />;
 
   if (showForm) {
     return (

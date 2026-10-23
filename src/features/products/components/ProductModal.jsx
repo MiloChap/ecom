@@ -1,7 +1,10 @@
 import Button from "../../../components/ui/Button";
 import { formatPrice } from "../../../utils/formatPrice";
+import { useCart } from "../../cart/context/CartContext";
 
 function ProductModal({ product, onClose }) {
+  const { dispatch } = useCart();
+
   return (
     <div className="product-modal-overlay">
       <div className="product-modal">
@@ -22,7 +25,12 @@ function ProductModal({ product, onClose }) {
             <Button type="button" onClick={onClose}>
               Fermer
             </Button>
-            <Button type="button">Ajouter au panier</Button>
+            <Button
+              type="button"
+              onClick={() => dispatch({ type: "ADD", product })}
+            >
+              Ajouter au panier
+            </Button>
           </div>
         </div>
       </div>
